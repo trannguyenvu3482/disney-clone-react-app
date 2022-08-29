@@ -1,44 +1,18 @@
-import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import movieSlice, { selectRecommend } from '../features/movie/movieSlice';
 
 const Recommends = () => {
+  const movies = useSelector(selectRecommend);
+
+  console.log(movies);
+
   return (
     <Container>
       <h3>Recommended For You</h3>
-      <Content>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://www.themoviedb.org/t/p/original/b1TMcotnjAidl1hTbOLULCi6jp7.jpg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://www.themoviedb.org/t/p/original/b1TMcotnjAidl1hTbOLULCi6jp7.jpg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://www.themoviedb.org/t/p/original/b1TMcotnjAidl1hTbOLULCi6jp7.jpg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://www.themoviedb.org/t/p/original/b1TMcotnjAidl1hTbOLULCi6jp7.jpg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-      </Content>
+      <Content></Content>
     </Container>
   );
 };
