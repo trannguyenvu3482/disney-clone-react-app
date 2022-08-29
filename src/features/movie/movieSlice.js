@@ -20,4 +20,6 @@ const movieSlice = createSlice({
   },
 });
 
+export const { setMovies } = movieSlice.actions;
+
 export default movieSlice;
