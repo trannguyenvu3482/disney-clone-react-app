@@ -10,7 +10,7 @@ import Viewers from './Viewers';
 
 import { collection, onSnapshot } from 'firebase/firestore';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import movieSlice from '../features/movie/movieSlice';
 import userSlice, { selectUserName } from '../features/user/userSlice';
@@ -20,49 +20,41 @@ const Home = () => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
 
-  const [recommends, setRecommends] = useState([]);
-  const [newDisneys, setNewDisneys] = useState([]);
-  const [originals, setOriginals] = useState([]);
-  const [trending, setTrending] = useState([]);
+  let recommends = [];
+  let newDisneys = [];
+  let originals = [];
+  let trending = [];
 
   useEffect(() => {
     onSnapshot(collection(db, 'movies'), (snap) => {
       snap.docs.forEach((doc) => {
         switch (doc.data().type) {
           case 'recommend':
-            // recommends.push({ id: doc.id, ...doc.data() });
-            // recommends = [...recommends, { id: doc.id, ...doc.data() }];
-            setRecommends([...recommends, { id: doc.id, ...doc.data() }]);
+            recommends = [...recommends, { id: doc.id, ...doc.data() }];
             break;
           case 'new':
-            // newDisneys.push({ id: doc.id, ...doc.data() });
-            // newDisneys = [...newDisneys, { id: doc.id, ...doc.data() }];
-            setNewDisneys([...newDisneys, { id: doc.id, ...doc.data() }]);
+            newDisneys = [...newDisneys, { id: doc.id, ...doc.data() }];
             break;
           case 'original':
-            // originals.push({ id: doc.id, ...doc.data() });
-            // originals = [...originals, { id: doc.id, ...doc.data() }];
-            setOriginals([...originals, { id: doc.id, ...doc.data() }]);
+            originals = [...originals, { id: doc.id, ...doc.data() }];
             break;
           case 'trending':
-            // trending.push({ id: doc.id, ...doc.data() });
-            // trending = [...trending, { id: doc.id, ...doc.data() }];
-            setTrending([...trending, { id: doc.id, ...doc.data() }]);
+            trending = [...trending, { id: doc.id, ...doc.data() }];
             break;
           default:
             break;
         }
       });
-    });
 
-    dispatch(
-      movieSlice.actions.setMovies({
-        recommend: recommends,
-        newDisney: newDisneys,
-        original: originals,
-        trending: trending,
-      })
-    );
+      dispatch(
+        movieSlice.actions.setMovies({
+          recommend: recommends,
+          newDisney: newDisneys,
+          original: originals,
+          trending: trending,
+        })
+      );
+    });
   }, [userName]);
 
   return (

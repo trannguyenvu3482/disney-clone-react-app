@@ -1,7 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Detail from './components/Detail';
 import Header from './components/Header';
-import Login from './components/Login';
 import Home from './components/Home';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/home" element={<Home />} />
+          <Route path="/home/:id" element={<Detail />} />
         </Routes>
       </Router>
     </div>

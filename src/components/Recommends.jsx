@@ -7,12 +7,22 @@ import movieSlice, { selectRecommend } from '../features/movie/movieSlice';
 const Recommends = () => {
   const movies = useSelector(selectRecommend);
 
-  console.log(movies);
-
   return (
     <Container>
       <h3>Recommended For You</h3>
-      <Content></Content>
+      <Content>
+        {movies &&
+          movies.map((movie, key) => {
+            return (
+              <Wrap>
+                {movie.id}
+                <Link to={'/detail/' + movie.id}>
+                  <img src={movie.cardImg} alt={movie.title} />
+                </Link>
+              </Wrap>
+            );
+          })}
+      </Content>
     </Container>
   );
 };
