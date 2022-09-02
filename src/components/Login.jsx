@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import bgimg from '../assets/images/login-background.jpg';
 import ctalogoOne from '../assets/images/cta-logo-one.svg';
 import ctalogoTwo from '../assets/images/cta-logo-two.png';
+import bgimg from '../assets/images/login-background.jpg';
 
-const Login = (props) => {
+const Login = ({ show, ...props }) => {
+  console.log(show);
+
   return (
     <Container>
       <Content>

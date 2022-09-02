@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-import DisneyLogo from '../assets/images/logo.svg';
 import HomeIcon from '../assets/images/home-icon.svg';
-import SearchIcon from '../assets/images/search-icon.svg';
+import DisneyLogo from '../assets/images/logo.svg';
 import MovieIcon from '../assets/images/movie-icon.svg';
 import OriginalIcon from '../assets/images/original-icon.svg';
+import SearchIcon from '../assets/images/search-icon.svg';
 import SeriesIcon from '../assets/images/series-icon.svg';
 import WatchListIcon from '../assets/images/watchlist-icon.svg';
 
-import { auth, provider, signInWithPopup } from '../firebase';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -17,7 +17,7 @@ import {
   setSignOutState,
   setUserLoginDetails,
 } from '../features/user/userSlice';
-import { useEffect } from 'react';
+import { auth, provider, signInWithPopup } from '../firebase';
 
 const Header = (props) => {
   const dispatch = useDispatch();

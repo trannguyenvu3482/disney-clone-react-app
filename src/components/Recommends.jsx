@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { v4 as uuidv4, v4 } from 'uuid';
 import movieSlice, { selectRecommend } from '../features/movie/movieSlice';
 
 const Recommends = () => {
@@ -14,8 +15,7 @@ const Recommends = () => {
         {movies &&
           movies.map((movie, key) => {
             return (
-              <Wrap>
-                {movie.id}
+              <Wrap key={v4()}>
                 <Link to={'/detail/' + movie.id}>
                   <img src={movie.cardImg} alt={movie.title} />
                 </Link>

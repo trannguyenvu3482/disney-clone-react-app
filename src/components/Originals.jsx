@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { v4 } from 'uuid';
 import { selectOriginal } from '../features/movie/movieSlice';
 
 const Originals = () => {
@@ -12,8 +13,7 @@ const Originals = () => {
         {movies &&
           movies.map((movie, key) => {
             return (
-              <Wrap>
-                {movie.id}
+              <Wrap key={v4()}>
                 <Link to={'/detail/' + movie.id}>
                   <img src={movie.cardImg} alt={movie.title} />
                 </Link>
